@@ -2,7 +2,7 @@
     "name": "tercera_entrega_brian",
     "version": "1.0.0",
     "description": "Tercera entrega NodeJS con MongoDB y Moongose",
-    "main": "index.js",
+    "main": "src/app.js",
     "scripts": {
         "start": "node src/app.js",
         "test": "echo \"Error: no test specified\" && exit 1"
