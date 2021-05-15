@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -13,42 +13,93 @@
   </head>
 <body >
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">BrianSA</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav">
+                 <li class="nav-item "><a href="/" class="nav-link text-white">INICIO</a></li>
+                <li class="nav-item"><a href="/cursos" class="nav-link text-white">Cursos</a></li>
+            {{#if sesion}}
+                {{#if (equals rol 'Coordinador')}}
+                     <li class="nav-item"><a href="/crearCurso" class="nav-link text-white">Crear Curso</a></li>
+                    <li class="nav-item"><a href="/inscritos" class="nav-link text-white">Inscritos</a></li>
                     </ul>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                {{else}}
+                    <li class="nav-item"><a href="/inscribir" class="nav-link text-whitek">Inscripciones</a></li>
+                    </ul>
+                {{/if}}
+                <div  class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <form  class="form-group ml-auto justify-content" style="float-right!important" action="/salir" method="GET">
+                            <h4>{{nombre}}</h4>
+                            <input  type="submit" value="Salir" class="btn btn-danger ml-auto justify-content">
+                    </form>
                 </div>
+            {{else}}
+            <li class="nav-item"><a href="/registrar" class="nav-link text-white">Registrarse</a></li>
+            </ul>
+            <div  class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <form data-toggle="validator" class="form-group row d-flex" action="/ingresar" method="POST"> 
+                        <div class="col-sm 2">
+                            <input type="text" class="form-control" name="nombre" placeholder="Usuario" required >
+                        </div>
+                        <div class="col-sm 2">
+                            <input type="password" class="form-control" name="password"  placeholder="Contraseña" required>
+                        </div>
+                        <div class="col-sm 2">
+                            <button type="submit" class="btn btn-success">Ingresar</button>
+                        </div>
+                    </form>
+                </ul>
+            </div>
+            {{/if}}
+        </div>
             </div>
         </nav>
     </header>
 
     
+
+
+   {{!--  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+       <li class="nav-item ">
+           <a href="/" class="nav-link text-white">Inicio</a>
+       </li>
+        <li class="nav-item">
+            <a href="/cursos" class="nav-link text-white">Cursos</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        {{#if sesion}}
+                {{#if (equals rol 'Coordinador')}}
+                     <li class="nav-item"><a href="/crearCurso" class="nav-link text-white">Crear Curso</a></li>
+                    <li class="nav-item"><a href="/inscritos" class="nav-link text-white">Inscritos</a></li>
+                    </ul>
+                {{else}}
+                    <li class="nav-item"><a href="/inscribir" class="nav-link text-whitek">Inscribir a Curso</a></li>
+                    </ul>
+        {{/if}}
+      </ul>
+      <div class="d-flex">
+          <form  class="form-group row" action="/salir" method="GET">
+                        <h4>{{nombre}}</h4>
+                        <input style="margin-left: 5%" type="submit" value="Salir" class="btn btn-danger">
+            </form>
+          
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </div>
+    </div>
+  </div>
+</nav> --}}
